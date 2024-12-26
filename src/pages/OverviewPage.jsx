@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../common/Header";
+import Header from "../Components/common/Header";
 import { motion } from "framer-motion";
-import StatCard from "../common/StatCard";
+import StatCard from "../Components/common/StatCard";
 import { BarChart2, ShoppingBag, Users, Zap } from "lucide-react";
 import SalesOverviewChart from "../Components/overview/SalesOverviewChart";
 import CategoryDistributionChart from "../Components/overview/CategoryDistributionChart";
