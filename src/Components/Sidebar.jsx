@@ -9,6 +9,7 @@ import {
   ShoppingCart,
   TrendingUp,
   Settings,
+  BadgeDollarSign,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 const SIDEBAR_ITEMS = [
@@ -29,6 +30,12 @@ const SIDEBAR_ITEMS = [
     icon: Users,
     color: "#EC4899",
     path: "/users",
+  },
+  {
+    name: "Order Requests",
+    icon: BadgeDollarSign,
+    color: "orange",
+    path: "/orders/requests",
   },
   {
     name: "Sales",
