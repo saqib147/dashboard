@@ -1,15 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import DetailsModal from "./DetailsModal";
+import { Link } from "react-router-dom";
 
 const AddUserForm = () => {
+  // State to store form data
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    // Customer Details
+    fullName: "",
+    phoneNumber: "",
+    email: "",
+    cnicNumber: "",
+    permanentAddress: "",
+    currentAddress: "",
+    cnicImage: null,
+    // Employment Details
+    jobTitle: "",
+    employerName: "",
+    monthlyIncome: "",
+    // Product Details
+    selectedProduct: "",
+    productVariant: "",
+    numberOfItems: "",
+    productPrice: "",
+    installmentPeriod: "",
+    monthlyInstallment: "",
+    initialPayment: "",
+    // Guarantor Details
+    guarantorName: "",
+    guarantorRelationship: "",
+    guarantorPhoneNumber: "",
+    guarantorEmail: "",
+    guarantorAddress: "",
+    guarantorIdNumber: "",
+    guarantorIdImage: null,
+    // Additional Fields
+    notes: "",
+    agreementDate: "",
+    employeeName: "",
+  });
+
+  // Handler for input changes
+  const handleInputChange = (e) => {
+    const { name, value, type, files } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "file" ? files[0] : value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+    console.log("Form Data:", formData);
+  };
+
   return (
     <motion.div
-      className="w-full bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700"
+      className="w-full bg-gray-800  bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
     >
-      <form className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
         {/* Customer Details */}
         <h2 className="text-lg font-semibold text-white mb-4">
           Customer Details
@@ -18,16 +73,22 @@ const AddUserForm = () => {
           <label className="block text-white">
             Full Name
             <input
+              name="fullName"
               type="text"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={formData.fullName}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
             />
           </label>
           <label className="block text-white">
             Phone Number
             <input
+              name="phoneNumber"
               type="text"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={formData.phoneNumber}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
             />
           </label>
@@ -36,15 +97,21 @@ const AddUserForm = () => {
           <label className="block text-white">
             Email Address (Optional)
             <input
-              type="text"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
             />
           </label>
           <label className="block text-white">
             CNIC Number
             <input
-              type="number"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              name="cnicNumber"
+              type="text"
+              value={formData.cnicNumber}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
             />
           </label>
@@ -53,26 +120,32 @@ const AddUserForm = () => {
           <label className="block text-white">
             Permanent Address
             <textarea
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              name="permanentAddress"
+              value={formData.permanentAddress}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
             ></textarea>
           </label>
           <label className="block text-white">
             Current Address (Optional)
-            <textarea className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            <textarea
+              name="currentAddress"
+              value={formData.currentAddress}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
+            ></textarea>
           </label>
-        </div>
-        <div className="grid grid-cols-1 gap-6">
           <label className="block text-white">
             CNIC Image
             <input
+              name="cnicImage"
               type="file"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
             />
           </label>
         </div>
-
         {/* Employment Details */}
         <h2 className="text-lg font-semibold text-white mt-8 mb-4">
           Employment Details
@@ -81,220 +154,197 @@ const AddUserForm = () => {
           <label className="block text-white">
             Job Title
             <input
+              name="jobTitle"
               type="text"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={formData.jobTitle}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
             />
           </label>
           <label className="block text-white">
             Employer Name
             <input
+              name="employerName"
               type="text"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray- 400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={formData.employerName}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
             />
           </label>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <label className="block text-white">
             Monthly Income
             <input
+              name="monthlyIncome"
               type="number"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={formData.monthlyIncome}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
             />
           </label>
         </div>
-
         {/* Product Details */}
         <h2 className="text-lg font-semibold text-white mt-8 mb-4">
           Product Details
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <label className="block text-white">
-            Select Product
-            <select
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            >
-              <option value="">Select Product</option>
-              {/* Add product options here */}
-            </select>
-          </label>
-          <label className="block text-white">
-            Select Model/Variant
+            Selected Product
             <input
+              name="selectedProduct"
               type="text"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </label>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <label className="block text-white">
-            Number of Items
-            <input
-              type="number"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={formData.selectedProduct}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
             />
           </label>
           <label className="block text-white">
-            Product Price
+            Product Variant
             <input
+              name="productVariant"
               type="text"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              readOnly
+              value={formData.productVariant}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
             />
           </label>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <label className="block text-white">
-            Total Installment Period
-            <select
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            >
-              <option value="">Select Period</option>
-              <option value="6">6 months</option>
-              <option value="12">12 months</option>
-              <option value="24">24 months</option>
-            </select>
-          </label>
-          <label className="block text-white">
-            Monthly Installment Amount
-            <input
-              type="number"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              readOnly
-            />
-          </label>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <label className="block text-white">
-            Initial Payment Amount
-            <input
-              type="number"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </label>
-        </div>
+        {/* Continue adding fields for Guarantor Details and Additional Fields */}
 
-        {/* Guarantor Details */}
-        <h2 className="text-lg font-semibold text-white mt-8 mb-4">
-          Guarantor Details
-        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <label className="block text-white">
-            Guarantor Full Name
+            Guarantor Name
             <input
+              name="guarantorName"
               type="text"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg ```javascriptreact
-              gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={formData.guarantorName}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
             />
           </label>
           <label className="block text-white">
-            Relationship to Customer
-            <select
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            Guarantor Relationship
+            <input
+              name="guarantorRelationship"
+              type="text"
+              value={formData.guarantorRelationship}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
-            >
-              <option value="">Select Relationship</option>
-              {/* Add relationship options here */}
-            </select>
+            />
           </label>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <label className="block text-white">
             Guarantor Phone Number
             <input
-              type="number"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </label>
-          <label className="block text-white">
-            Guarantor Email Address (Optional)
-            <input
+              name="guarantorPhoneNumber"
               type="text"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={formData.guarantorPhoneNumber}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
+              required
             />
           </label>
-        </div>
-        <div className="grid grid-cols-1 gap-6">
           <label className="block text-white">
-            Guarantor Permanent Address
+            Guarantor Email
+            <input
+              name="guarantorEmail"
+              type="email"
+              value={formData.guarantorEmail}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
+            />
+          </label>
+          <label className="block text-white">
+            Guarantor Address
             <textarea
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
+              name="guarantorAddress"
+              value={formData.guarantorAddress}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
             ></textarea>
           </label>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <label className="block text-white">
             Guarantor ID Number
             <input
-              type="number"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              name="guarantorIdNumber"
+              type="text"
+              value={formData.guarantorIdNumber}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
             />
           </label>
           <label className="block text-white">
-            Upload Guarantor National ID Image
+            Guarantor ID Image
             <input
+              name="guarantorIdImage"
               type="file"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
             />
-          </label>
-        </div>
-
-        {/* Additional Fields */}
-        <h2 className="text-lg font-semibold text-white mt-8 mb-4">
-          Additional Fields
-        </h2>
-        <div className="grid grid-cols-1 gap-6">
-          <label className="block text-white">
-            Notes
-            <textarea className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
           </label>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <label className="block text-white">
-            Date of Agreement
+            Notes
+            <textarea
+              name="notes"
+              value={formData.notes}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
+            ></textarea>
+          </label>
+          <label className="block text-white">
+            Agreement Date
             <input
+              name="agreementDate"
               type="date"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={formData.agreementDate}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
               required
             />
           </label>
           <label className="block text-white">
             Employee Name
             <input
+              name="employeeName"
               type="text"
-              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              readOnly
+              value={formData.employeeName}
+              onChange={handleInputChange}
+              className="mt-1 w-full bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2"
             />
           </label>
         </div>
 
-        {/* Action Buttons */}
         <div className="flex justify-end space-x-4 mt-6">
           <button
             type="submit"
             className="bg-blue-600 text-white p-2 rounded-md"
           >
-            Save/Submit
+            Submit
           </button>
-          <button
-            type="button"
-            className="bg-red-600 text-white p-2 rounded-md"
-          >
-            Cancel
-          </button>
+          <Link to="/users">
+            <button
+              type="button"
+              className="bg-red-600 text-white p-2 rounded-md"
+            >
+              Cancel
+            </button>
+          </Link>
         </div>
       </form>
+
+      {isModalOpen && (
+        <DetailsModal
+          onClose={() => setIsModalOpen(false)}
+          formData={formData}
+        />
+      )}
     </motion.div>
   );
 };
