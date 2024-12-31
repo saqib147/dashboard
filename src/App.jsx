@@ -7,6 +7,7 @@ import SalesPage from "./pages/SalesPage";
 import OrdersPage from "./pages/OrdersPage";
 import AddUsersPage from "./pages/AddUsersPage";
 import OrderRequestPage from "./pages/OrderRequestPage";
+import OrderRequestDetails from "./pages/OrderRequestDetails";
 function App() {
   return (
     <div className="flex h-screen bg-gray-900 text-gray-100 overflow-hidden">
@@ -24,6 +25,10 @@ function App() {
         <Route path="/sales" element={<SalesPage />} />
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/orders/requests" element={<OrderRequestPage />} />
+        <Route
+          path="/orders/requests/details"
+          element={<OrderRequestDetails />}
+        />
       </Routes>
     </div>
   );
