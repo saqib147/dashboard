@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Search } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const userData = [
   {
     id: 1,
@@ -70,7 +71,15 @@ const UserTable = () => {
             value={searchTerm}
             onChange={handleSearch}
           />
-          <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+          <Link to={"/users/add"}>
+            <Search
+              className="absolute left-3 top-2.5 text-gray-400"
+              size={18}
+            />
+            <button className="ml-4 bg-gray-800 ring-1 ring-gray-700 text-gray-400 rounded-lg p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <Plus size={18} />
+            </button>
+          </Link>
         </div>
       </div>
       <div className="overflow-x-auto ">
