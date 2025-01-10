@@ -53,7 +53,7 @@ const OrderRequestModal = ({ onClose, onStatusChange }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-10">
+    <div className="fixed inset-0  bg-black bg-opacity-50 flex items-start justify-center z-50 pt-10">
       <div className="bg-gray-800 backdrop-blur-md p-6 rounded-lg shadow-lg ring-1 ring-gray-700 w-full max-w-xl relative">
         <button
           onClick={onClose}
@@ -64,33 +64,6 @@ const OrderRequestModal = ({ onClose, onStatusChange }) => {
         <h2 className="text-2xl font-bold text-white mb-4">Details</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Customer Details */}
-          <h3 className="col-span-full text-lg font-semibold text-gray-400">
-            Customer Details
-          </h3>
-          <p className="text-gray-400">Name: {formData.fullName}</p>
-          <p className="text-gray-400">Phone Number: {formData.phoneNumber}</p>
-          <p className="text-gray-400">Email: {formData.email}</p>
-          <p className="text-gray-400">CNIC Number: {formData.cnicNumber}</p>
-          <p className="text-gray-400">
-            Permanent Address: {formData.permanentAddress}
-          </p>
-          <p className="text-gray-400">
-            Current Address: {formData.currentAddress}
-          </p>
-          <p className="text-gray-400">
-            CNIC Image: {formData.cnicImage?.name}
-          </p>
-          {/* Employment Details */}
-          <h3 className="col-span-full text-lg font-semibold text-gray-400">
-            Employment Details
-          </h3>
-          <p className="text-gray-400">Job Title: {formData.jobTitle}</p>
-          <p className="text-gray-400">
-            Employer Name: {formData.employerName}
-          </p>
-          <p className="text-gray-400">
-            Monthly Income: {formData.monthlyIncome}
-          </p>
           {/* Product Details */}
           <h3 className="col-span-full text-lg font-semibold text-gray-400">
             Product Details
@@ -142,28 +115,15 @@ const OrderRequestModal = ({ onClose, onStatusChange }) => {
             Guarantor ID Image: {formData.guarantorIdImage?.name}
           </p>
           {/* Additional Fields */}
-          <h3 className="col-span-full text-lg font-semibold text-gray-400">
-            Additional Fields
-          </h3>
-          <p className="text-gray-400">Notes: {formData.notes}</p>
-          <p className="text-gray-400">
-            Agreement Date: {formData.agreementDate}
-          </p>
-          <p className="text-gray-400">
-            Employee Name: {formData.employeeName}
-          </p>
-          <p className="text-gray-400">Status: {status}</p>{" "}
+
           {/* Display the current status */}
         </div>
-        <div className="flex justify-evenly">
+        <div className="flex justify-evenly mt-2">
           <button
-            className="text-indigo-400 hover:text-indigo-300 mr-2"
+            className="text-white p-3 rounded-md bg-red-500 hover:bg-red-600"
             onClick={onClose}
           >
-            Approve
-          </button>
-          <button className="text-red-400 hover:text-red-300" onClick={onClose}>
-            Reject
+            Close
           </button>
         </div>
       </div>
