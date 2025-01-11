@@ -1,9 +1,9 @@
 import { CheckCircle, Clock, DollarSign, ShoppingBag } from "lucide-react";
 import { motion } from "framer-motion";
 
-import OrdersTable from "../Components/orders/OrdersTable";
-import Header from "../Components/common/Header";
-import StatCard from "../Components/common/StatCard";
+import OrdersTable from "../components/orders/OrdersTable";
+import Header from "../components/common/Header";
+import StatCard from "../components/common/StatCard";
 
 const orderStats = {
   totalOrders: "1,234",

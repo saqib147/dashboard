@@ -1,7 +1,7 @@
 import React from "react";
-import StatCard from "../Components/common/StatCard";
+import StatCard from "../components/common/StatCard";
 import { motion } from "framer-motion";
-import Header from "../Components/common/Header";
+import Header from "../components/common/Header";
 import {
   AlertTriangle,
   BarChart2,
@@ -12,10 +12,10 @@ import {
   Users,
   Zap,
 } from "lucide-react";
-import ProductTable from "../Components/products/ProductTable";
-import SalesOverviewChart from "../Components/overview/SalesOverviewChart";
-import CategoryDistributionChart from "../Components/overview/CategoryDistributionChart";
-import SalesTrendChart from "../Components/products/SalesTrendChart";
+import ProductTable from "../components/products/ProductTable";
+import SalesOverviewChart from "../components/overview/SalesOverviewChart";
+import CategoryDistributionChart from "../components/overview/CategoryDistributionChart";
+import SalesTrendChart from "../components/products/SalesTrendChart";
 
 const ProductsPage = () => {
   return (

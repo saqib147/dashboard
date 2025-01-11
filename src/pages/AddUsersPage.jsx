@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Header from "../Components/common/Header";
-import AddUserForm from "../Components/adduser/AddUserForm";
+import Header from "../components/common/Header";
+import AddUserForm from "../components/adduser/AddUserForm";
 
 const AddUsersPage = () => {
   return (

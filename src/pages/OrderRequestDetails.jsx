@@ -1,8 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import { Settings } from "lucide-react";
-import Header from "../Components/common/Header";
-import OrderRequestModal from "../Components/orderRequest/OrderRequestModal";
+import Header from "../components/common/Header";
+import OrderRequestModal from "../components/orderRequest/OrderRequestModal";
 import { useState } from "react";
 // import Image from "next/image";
 

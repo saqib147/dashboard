@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import Header from "../Components/common/Header";
-import StatCard from "../Components/common/StatCard";
+import Header from "../components/common/Header";
+import StatCard from "../components/common/StatCard";
 import { CreditCard, DollarSign, ShoppingCart, TrendingUp } from "lucide-react";
-import SalesOverviewChart from "../Components/sales/SalesOverviewChart";
-import SalesByCategoryChart from "../Components/sales/SalesByCategoryChart";
-import DailySalesTrend from "../Components/sales/DailySalesTrend";
+import SalesOverviewChart from "../components/sales/SalesOverviewChart";
+import SalesByCategoryChart from "../components/sales/SalesByCategoryChart";
+import DailySalesTrend from "../components/sales/DailySalesTrend";
 
 const salesStats = {
   totalRevenue: "$1,234,567",
