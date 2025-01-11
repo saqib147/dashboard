@@ -8,7 +8,7 @@ import OrdersPage from "./pages/OrdersPage";
 import AddUsersPage from "./pages/AddUsersPage";
 import OrderRequestPage from "./pages/OrderRequestPage";
 import OrderRequestDetails from "./pages/OrderRequestDetails";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+// import { SpeedInsights } from "@vercel/speed-insights/next"
 function App() {
   return (
     <div className="flex h-screen bg-gray-900 text-gray-100 overflow-hidden">
@@ -16,7 +16,7 @@ function App() {
         <div className="inset-0 absolute bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 opacity-80 " />
         <div className="absolute inset-0 backdrop-blur-sm " />
       </div>
-      <SpeedInsights />
+      {/* <SpeedInsights /> */}
 
       <Sidebar />
       <Routes>
